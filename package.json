@@ -21,5 +21,9 @@
     "url": "https://github.com/Rytoff/excel-course/issues"
   },
   "homepage": "https://github.com/Rytoff/excel-course#readme",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
 }
