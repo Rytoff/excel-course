@@ -1,0 +1,25 @@
+{
+  "name": "excel-course",
+  "version": "1.0.0",
+  "description": "Pure Javascript Excel App",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rytoff/excel-course.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "excel"
+  ],
+  "author": "Rytoff <roman.rytoff@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rytoff/excel-course/issues"
+  },
+  "homepage": "https://github.com/Rytoff/excel-course#readme",
+  "private": true
+}
