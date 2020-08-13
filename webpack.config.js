@@ -4,6 +4,7 @@ const {
 } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -13,6 +14,9 @@ module.exports = {
     filename: 'bundle.[hash].js',
     path: path.resolve(__dirname, 'dist')
   },
+  // resolve: {
+  //   extensions: ['.js']
+  // }
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -25,6 +29,9 @@ module.exports = {
          to: path.resolve(__dirname, 'dist')
         }
       ],
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'bundle.[hash].css'
     })
   ]
 }
