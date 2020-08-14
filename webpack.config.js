@@ -9,6 +9,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
 
+console.log('IS PROD', isProd)
+console.log('IS DEV', isDev)
+
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
@@ -27,7 +30,11 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: 'index.html'
+      template: 'index.html',
+      minify: {
+        removeComments: isProd,
+        collapseWhitespace: isProd
+      }
     }),
     new CopyPlugin({
       patterns: [{
