@@ -12,7 +12,7 @@ const isDev = !isProd
 console.log('IS PROD', isProd)
 console.log('IS DEV', isDev)
 
-// const filename = ext => (isDev) ? `bundle.${ext}` : `bundle.[hash].${ext}`
+// const filename = ext => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
