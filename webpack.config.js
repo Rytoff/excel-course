@@ -12,12 +12,14 @@ const isDev = !isProd
 console.log('IS PROD', isProd)
 console.log('IS DEV', isDev)
 
+// const filename = ext => (isDev) ? `bundle.${ext}` : `bundle.[hash].${ext}`
+
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry: './index.js',
   output: {
-    filename: 'bundle.[hash].js',
+    filename: 'bundle.[hash].js',// filename: filename(ext: 'js'),
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
@@ -43,7 +45,7 @@ module.exports = {
       }],
     }),
     new MiniCssExtractPlugin({
-      filename: 'bundle.[hash].css'
+      filename: 'bundle.[hash].css'// filename: filename(ext: 'css')
     })
   ],
   module: {
