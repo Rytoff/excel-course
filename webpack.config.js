@@ -23,7 +23,7 @@ const jsLoaders = () => {
       }
     }
   ]
-  if(isDev) {
+  if (isDev) {
 loaders.push('eslint-loader')
   }
   return loaders
@@ -86,13 +86,13 @@ hot: isDev
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: jsLoaders(),
-        loader: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+        use: jsLoaders()
+        // loader: {
+        //   loader: 'babel-loader',
+        //   options: {
+        //     presets: ['@babel/preset-env']
+        //   }
+        // }
       }
     ],
   }
