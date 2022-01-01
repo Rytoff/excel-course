@@ -14,6 +14,9 @@ class Dom {
     this.html('')
     return this
   }
+  on(eventType, cb) {
+    this.$el.addEventListener(eventType, cb)
+  }
   append(node) {
     if (node instanceof Dom) {
       node = node.$el
