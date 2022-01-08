@@ -3,9 +3,9 @@ const CODES = {
   Z: 90,
 }
 
-function toColumn(col) {
+function toColumn(col, idx) {
   return `
-    <div class='column'>
+    <div class='column' data-type='resizible' data-col='${idx}'>
     ${col}
     <div class='col-resize' data-resize="col"></div>
     </div>
@@ -17,7 +17,7 @@ function createRow(index, content) {
     ? `<div class='row-resize' data-resize="row"></div>`
     : ''
   return `
-    <div class='row'>
+    <div class='row' data-type='resizible'>
       <div class='row-info'>
       ${index ? index : ''}
       ${resizer}
@@ -27,9 +27,9 @@ function createRow(index, content) {
   `
 }
 
-function toCell() {
+function toCell(_, col) {
   return `
-    <div class='cell' contenteditable></div>
+    <div class='cell' contenteditable data-col="${col}"></div>
   `
 }
 

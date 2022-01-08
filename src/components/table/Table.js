@@ -1,5 +1,7 @@
 import { ExcelComponent } from '@core/ExcelComponent'
 import { createTable } from '@/components/table/table.template'
+import { resizeHandler } from '@/components/table/table.resize'
+import { shouldResize } from '@/components/table/table.functions'
 
 export class Table extends ExcelComponent {
   static className = 'excel__table'
@@ -14,19 +16,9 @@ export class Table extends ExcelComponent {
     return createTable()
   }
 
-  // onClick(event) {
-  //   console.log('click', event.target)
-  // }
-  onMousedown(e) {
-    // console.log('mousedown', e.target.getAttribute('data-resize'))
-    if (e.target.dataset.resize) {
-      console.log('Start Resizing', e.target.dataset.resize)
+  onMousedown(event) {
+    if (shouldResize(event)) {
+      resizeHandler(this.$root, event)
     }
   }
-  // onMousemove() {
-  //   console.log('mousemove')
-  // }
-  // onMouseup() {
-  //   console.log('mouseup')
-  // }
 }
