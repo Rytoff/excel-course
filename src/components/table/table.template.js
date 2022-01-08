@@ -33,7 +33,8 @@ function toCell(row) {
     <div class='cell'
     contenteditable
     data-col="${col}"
-    data-id="${row}:${col}">
+    data-id="${row}:${col}"
+    data-type="cell">
     </div>
   `
   }
