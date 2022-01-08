@@ -24,23 +24,36 @@ export class Table extends ExcelComponent {
       const $parent = $resizer.closest('[data-type="resizible"]')
       const coords = $parent.getCoords()
       const type = $resizer.data.resize
+      const prop = type === 'col' ? 'bottom' : 'right'
+      let value
 
-      const cells = this.$root.findAll(`[data-col="${$parent.data.col}"]`)
+      $resizer.css({ opacity: 1, [prop]: '-5000px' })
 
       document.onmousemove = (e) => {
         if (type === 'col') {
           const delta = e.pageX - coords.right
-          const value = coords.width + delta
-          $parent.css({ width: value + 'px' })
-          cells.forEach((el) => (el.style.width = value + 'px'))
+          value = coords.width + delta
+          $resizer.css({ right: -delta + 'px' })
         } else {
           const delta = e.pageY - coords.bottom
-          const value = coords.height + delta
-          $parent.css({ height: value + 'px' })
+          value = coords.height + delta
+          $resizer.css({ bottom: -delta + 'px' })
         }
       }
       document.onmouseup = () => {
         document.onmousemove = null
+        document.onmouseup = null
+
+        if (type === 'col') {
+          $parent.css({ width: value + 'px' })
+          this.$root
+            .findAll(`[data-col="${$parent.data.col}"]`)
+            .forEach((el) => (el.style.width = value + 'px'))
+        } else {
+          $parent.css({ height: value + 'px' })
+        }
+
+        $resizer.css({ opacity: 0, bottom: 0, right: 0 })
       }
     }
   }
@@ -55,3 +68,5 @@ export class Table extends ExcelComponent {
 // 3069 ms  Rendering
 // 300 ms  Scripting
 // 2872 ms  Rendering
+// 108 ms  Scripting
+// 471 ms  Rendering
