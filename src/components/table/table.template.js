@@ -4,8 +4,9 @@ const CODES = {
 }
 
 const DEFAULT_WIDTH = 120
+const DEFAULT_HEIGHT = 24
 
-function getWidth(state = {}, index) {
+function getWidth(state, index) {
   return (state[index] || DEFAULT_WIDTH) + 'px'
 }
 
@@ -25,7 +26,7 @@ function createRow(index, content) {
     ? `<div class='row-resize' data-resize="row"></div>`
     : ''
   return `
-    <div class='row' data-type='resizible'>
+    <div class='row' data-type='resizible' data-row="${index}">
       <div class='row-info'>
       ${index ? index : ''}
       ${resizer}
