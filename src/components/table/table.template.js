@@ -1,3 +1,6 @@
+import { defaultStyles } from '../../constants'
+import { camelToDashCase } from '../../core/utils'
+
 const CODES = {
   A: 65,
   Z: 90,
@@ -25,10 +28,8 @@ function toColumn({ col, index, width }) {
 }
 
 function createRow(index, content, state) {
-  const resize = index
-    ? `<div class='row-resize' data-resize="row"></div>`
-    : ''
-    const height = getHeight(state, index)
+  const resize = index ? `<div class='row-resize' data-resize="row"></div>` : ''
+  const height = getHeight(state, index)
   return `
     <div class='row' 
     data-type='resizible'
@@ -47,15 +48,18 @@ function createRow(index, content, state) {
 function toCell(state, row) {
   return function(_, col) {
     const id = `${row}:${col}`
-    const data = state.dataState[id]
     const width = getWidth(state.colState, col)
+    const data = state.dataState[id]
+    const styles = Object.keys(defaultStyles)
+      .map((key) => `${camelToDashCase(key)}: ${defaultStyles[key]}`)
+      .join(';')
     return `
     <div class='cell'
     contenteditable
     data-col="${col}"
     data-id="${id}"
     data-type="cell"
-    style='width: ${width}'
+    style='${styles}; width: ${width}'
     >${data || ''}</div>
   `
   }
@@ -88,10 +92,7 @@ export function createTable(rowsCount = 15, state = {}) {
   rows.push(createRow(null, cols, {}))
 
   for (let row = 0; row < rowsCount; row++) {
-    const cells = new Array(colsCount)
-    .fill('')
-    .map(toCell(state, row))
-    .join('')
+    const cells = new Array(colsCount).fill('').map(toCell(state, row)).join('')
 
     rows.push(createRow(row + 1, cells, state.rowState))
   }
