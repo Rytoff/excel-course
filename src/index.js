@@ -7,10 +7,11 @@
 // import { rootReducer } from '@/redux/rootReducer'
 // import { storage, debounce } from '@/core/utils'
 // import { initialState } from './redux/initialState'
+import { Router } from '@core/routes/Router'
 import './scss/index.scss'
 
 new Router('#app', {
-  
+
 })
 
 // const store = createStore(rootReducer, initialState)
