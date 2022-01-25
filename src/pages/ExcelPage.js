@@ -10,7 +10,7 @@ import { Table } from '@/components/table/Table'
 import { normalizeInitialState } from '../redux/initialState'
 
 function storageName(param) {
-  return 'excel' + param
+  return 'excel:' + param
 }
 export class ExcelPage extends Page {
   getRoot() {

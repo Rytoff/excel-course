@@ -1,7 +1,14 @@
-function toHTML() {
+import { storage } from '../core/utils'
+
+function toHTML(key) {
+  console.log('key toHTML', key)
+  const model = storage(key)
+  console.log('model', model)
+  const id = key.split(':')[1]
+  console.log('id', id)
   return `
   <li class="db__record">
-    <a href="#">Table One</a>
+    <a href="#excel/${id}">${model.title}</a>
     <strong>24.12.2021</strong>
   </li>
   `
@@ -21,7 +28,6 @@ function getAllKeys() {
 
 export function createRecordsTable() {
   const keys = getAllKeys()
-  console.log('keys ', keys)
 
   if (!keys.length) {
     return `<p>You didn't create any Table yet</p>`
