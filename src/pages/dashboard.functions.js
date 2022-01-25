@@ -1,11 +1,8 @@
 import { storage } from '../core/utils'
 
 function toHTML(key) {
-  console.log('key toHTML', key)
   const model = storage(key)
-  console.log('model', model)
   const id = key.split(':')[1]
-  console.log('id', id)
   return `
   <li class="db__record">
     <a href="#excel/${id}">${model.title}</a>
@@ -42,7 +39,10 @@ export function createRecordsTable() {
       <span>Opened:</span>
     </div>
     <ul class="db__list">
-        ${keys.map(toHTML).join('')}
+        ${keys
+          .map(toHTML)
+          .sort((a, b) => a - b)
+          .join('')}
     </ul>
   `
 }
