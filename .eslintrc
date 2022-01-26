@@ -7,7 +7,7 @@
     "jest/globals": true
   },
   "extends": ["eslint:recommended", "google"],
-  "pligins": ["jest"],
+  "plugins": ["jest"],
   "rules": {
     "semi": "off",
     "arrow-parens": "off",
